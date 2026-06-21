@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mk体育 · 一份安静的阅读指南</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f8f6f0;
+            font-family: "Noto Serif SC", "Georgia", "Times New Roman", serif;
+            color: #2d2b28;
+            line-height: 1.8;
+            padding: 2.5rem 1.25rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page {
+            max-width: 800px;
+            width: 100%;
+            background: #fefcf8;
+            border-radius: 20px;
+            padding: 3rem 2.5rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            border: 1px solid #ebe7dd;
+        }
+
+        /* 开场短句 */
+        .opening {
+            font-size: 1.6rem;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+            color: #3f3b35;
+            margin-bottom: 1.8rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 2px solid #e2dcd0;
+        }
+
+        .opening em {
+            font-style: italic;
+            color: #7a6f5e;
+        }
+
+        /* 承接段落 */
+        .lead {
+            font-size: 1.05rem;
+            margin-top: 0.5rem;
+            margin-bottom: 2rem;
+            padding: 0 0.3rem;
+            color: #4a4640;
+        }
+
+        .lead a {
+            color: #7f6b4f;
+            text-decoration: none;
+            border-bottom: 1px dotted #b8aa98;
+            transition: border-color 0.2s;
+        }
+
+        .lead a:hover {
+            border-bottom: 1px solid #7f6b4f;
+        }
+
+        /* 特点列表 – 温和卡片式 */
+        .feature-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.4rem;
+            margin: 2.2rem 0 2.5rem;
+        }
+
+        .feature-item {
+            background: #f6f3ec;
+            padding: 1.2rem 1.6rem;
+            border-radius: 14px;
+            border-left: 5px solid #ccbea8;
+            transition: background 0.2s;
+        }
+
+        .feature-item:hover {
+            background: #f0ebe2;
+        }
+
+        .feature-item strong {
+            display: block;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #4e4439;
+            margin-bottom: 0.25rem;
+        }
+
+        .feature-item span {
+            font-size: 0.98rem;
+            color: #5c554b;
+            line-height: 1.7;
+        }
+
+        /* 引用块 / 提示框 */
+        .insight-box {
+            background: #f3efe8;
+            padding: 1.8rem 2.2rem;
+            border-radius: 18px;
+            margin: 2rem 0 2.2rem;
+            position: relative;
+            font-size: 0.98rem;
+            color: #4b453d;
+            box-shadow: inset 0 1px 4px rgba(0,0,0,0.02);
+        }
+
+        .insight-box::before {
+            content: "📖";
+            font-size: 1.8rem;
+            display: block;
+            margin-bottom: 0.5rem;
+            opacity: 0.7;
+        }
+
+        .insight-box p {
+            margin-bottom: 0.6rem;
+        }
+
+        .insight-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* 温和结尾 */
+        .closing {
+            margin-top: 2.2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e2dcd0;
+            font-size: 0.98rem;
+            color: #5f5950;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 0.8rem;
+        }
+
+        .closing .signature {
+            font-style: italic;
+            color: #8c8273;
+        }
+
+        .closing a {
+            color: #7f6b4f;
+            text-decoration: none;
+            border-bottom: 1px dotted #c7b9a7;
+        }
+
+        .closing a:hover {
+            border-bottom: 1px solid #7f6b4f;
+        }
+
+        /* FAQ 摘要 – 轻量折叠感 */
+        .faq-note {
+            margin: 2rem 0 0.5rem;
+            padding: 1rem 0 0.2rem;
+            border-top: 1px dashed #ddd6ca;
+        }
+
+        .faq-note details {
+            margin-bottom: 0.6rem;
+        }
+
+        .faq-note summary {
+            font-weight: 500;
+            color: #4f483e;
+            cursor: pointer;
+            padding: 0.3rem 0;
+            list-style: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .faq-note summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .faq-note summary::before {
+            content: "▸";
+            margin-right: 0.6rem;
+            color: #b3a591;
+            transition: transform 0.2s;
+        }
+
+        .faq-note details[open] summary::before {
+            transform: rotate(90deg);
+        }
+
+        .faq-note .answer {
+            padding: 0.4rem 0 0.6rem 1.4rem;
+            color: #5d564c;
+            font-size: 0.95rem;
+        }
+
+        /* 响应式 */
+        @media (max-width: 600px) {
+            body {
+                padding: 1.2rem 0.8rem;
+            }
+
+            .page {
+                padding: 1.8rem 1.2rem;
+                border-radius: 16px;
+            }
+
+            .opening {
+                font-size: 1.3rem;
+            }
+
+            .feature-item {
+                padding: 1rem 1.2rem;
+            }
+
+            .insight-box {
+                padding: 1.3rem 1.5rem;
+            }
+
+            .closing {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .page {
+                padding: 1.2rem 0.8rem;
+            }
+
+            .opening {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <!-- 开场短句 -->
+        <div class="opening">
+            有时只是随手查一项运动数据，<br>
+            却不知不觉翻完了整个下午。
+        </div>
+
+        <!-- 承接段落：日常查询与对照 -->
+        <div class="lead">
+            对于许多关注体育的人来说，日常的查询往往不止于比分——选手的历史战绩、联赛规则的变化、不同赛季的对照，甚至某个战术术语的准确解释，都可能成为延伸阅读的起点。在这个过程中，一个内容清晰、结构稳定的信息源会带来自然的便利。<a href="https://zhcn--mk.com">mk体育</a>正是这样一处可以安静浏览的地方，没有喧哗的弹窗，也没有紧迫的催促，页面更接近一本随时摊开的参考书。无论是想核实一场旧赛的阵容，还是单纯想了解某项运动的发展脉络，这里都提供了一种不被打扰的阅读节奏。
+        </div>
+
+        <!-- 特点列表（温和描述） -->
+        <div class="feature-grid">
+            <div class="feature-item">
+                <strong>条目式导航</strong>
+                <span>赛事、队伍、个人资料以清晰条目排列，方便逐项翻阅与对照。不必在多层菜单间反复跳转，减少信息迷路。</span>
+            </div>
+            <div class="feature-item">
+                <strong>延伸内容自然融入</strong>
+                <span>每一条基础信息旁常附带背景说明或相关记录，像书页边缘的注脚，为好奇心留出深入的空间。</span>
+            </div>
+            <div class="feature-item">
+                <strong>版式宽松，聚焦文字</strong>
+                <span>页面留白充足，字体大小适中，阅读时视线不会疲劳。没有自动播放的视频或闪烁广告，让注意力回到内容本身。</span>
+            </div>
+        </div>
+
+        <!-- 提示框 / 引用块 -->
+        <div class="insight-box">
+            <p>一位读者曾这样描述她的使用习惯：「赛季中我每周会打开三四次，主要是查球员的出场时间和效率值。后来慢慢开始看球队的历年阵容变化，再后来连裁判规则解释都成了固定阅读。它不像一个体育门户，倒更像一本随时可以翻开的笔记。」</p>
+            <p style="margin-top:0.4rem;">—— 或许这也说明，当查询工具足够安静、克制时，阅读自然会走得更远一些。</p>
+        </div>
+
+        <!-- FAQ 摘要（轻量） -->
+        <div class="faq-note">
+            <details>
+                <summary>数据更新频率与覆盖范围</summary>
+                <div class="answer">
+                    主要覆盖近期主流赛事与历史重要赛季，常规数据按比赛日同步更新。部分冷门联赛或早期纪录可能以文字描述形式收录，具体可自行检索确认。
+                </div>
+            </details>
+            <details>
+                <summary>移动端阅读体验如何？</summary>
+                <div class="answer">
+                    页面采用响应式布局，在手机浏览器上同样保持宽松排版。建议横屏查看表格类数据，竖屏则更适合逐条阅读文字内容。
+                </div>
+            </details>
+            <details>
+                <summary>是否有评论或讨论区？</summary>
+                <div class="answer">
+                    当前以内容展示为主，未设置用户评论板块。若希望交流特定话题，可自行使用社交平台或论坛延伸讨论。
+                </div>
+            </details>
+        </div>
+
+        <!-- 温和结尾 -->
+        <div class="closing">
+            <span>慢慢翻，总会找到你需要的那个细节。</span>
+            <span class="signature">—— 来自 <a href="https://zhcn--mk.com">mk体育</a> · 一段安静的阅读时间</span>
+        </div>
+    </div>
+</body>
+</html>
